@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "django-celery-rabbit"
+version = "0.1.0"
+description = ""
+authors = ["Pawel Perenc"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.4"
+celery = "^5.3.6"
+redis = "^5.0.3"
+flower = "^2.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
