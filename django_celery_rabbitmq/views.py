@@ -19,6 +19,8 @@ def view1(request):
 
 
 def view2(request):
+    logger.info('Starting view2()')
     if request.method == 'POST':
         simple_task_2.delay()
+        logger.info('Finished view2()')
         return render(request, 'index.html', context={'button2': True})

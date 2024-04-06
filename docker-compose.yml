@@ -1,22 +1,28 @@
-version: '3'
+version: "3"
 
 services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
   app:
-    container_name: app
+    container_name: code
     build: .
     ports:
       - "8888:8888"
     volumes:
-      - .:/app
+      - .:/code
     restart: always
-
 
   worker1:
     container_name: worker1
     build: .
-    command: celery -A DjangoCeleryExample worker -B -l info -Q queue1
+    command: celery -A django_celery_rabbitmq worker -B -l info -Q queue1
     volumes:
-      - .:/app
+      - .:/code
     depends_on:
       - app
       - rabbitmq
@@ -24,9 +30,9 @@ services:
   worker2:
     container_name: worker2
     build: .
-    command: celery -A DjangoCeleryExample worker -l info -Q queue2
+    command: celery -A django_celery_rabbitmq worker -l info -Q queue2
     volumes:
-      - .:/app
+      - .:/code
     depends_on:
       - app
       - rabbitmq
@@ -34,9 +40,9 @@ services:
   worker3:
     container_name: worker3
     build: .
-    command: celery -A DjangoCeleryExample worker -B -l info
+    command: celery -A django_celery_rabbitmq worker -B -l info
     volumes:
-      - .:/app
+      - .:/code
     depends_on:
       - app
       - rabbitmq
@@ -53,9 +59,9 @@ services:
   flower:
     container_name: flower
     build: .
-    command: celery -A DjangoCeleryExample flower --port=5555
+    command: celery -A django_celery_rabbitmq flower --port=5555
     volumes:
-      - .:/app
+      - .:/code
     ports:
       - "5556:5555"
     depends_on:
