@@ -22,10 +22,11 @@ Example of implementations a simple Django app with Celery tasks, RabbitMQ, Flow
 
 1. Clone the repository
 2. Install docker
-3. convert .envexample to .env and update your data
-4. Run `docker compose build`
-5. Run `docker compose up`
-6. Open http://0.0.0.0:8888 in your browser to see the Swagger UI
+3. Install poetry env
+4. convert .envexample to .env and update your data
+5. Run `docker compose build`
+6. Run `docker compose up`
+7. Open http://0.0.0.0:8888 in your browser to see the Swagger UI
    - Click on the button 1 to run the SimpleTask1
    - Click on the button 2 to run the SimpleTask2
-7. Open http://0.0.0.0:5556 in your browser to see the Flower UI
+8. Open http://0.0.0.0:5556 in your browser to see the Flower UI
