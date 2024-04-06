@@ -20,7 +20,7 @@ services:
   worker1:
     container_name: worker1
     build: .
-    command: celery -A django_celery_rabbitmq worker -B -l info -Q queue1
+    command: celery -A core worker -B -l info -Q queue1
     volumes:
       - .:/code
     depends_on:
@@ -30,7 +30,7 @@ services:
   worker2:
     container_name: worker2
     build: .
-    command: celery -A django_celery_rabbitmq worker -l info -Q queue2
+    command: celery -A core worker -l info -Q queue2
     volumes:
       - .:/code
     depends_on:
@@ -40,7 +40,7 @@ services:
   worker3:
     container_name: worker3
     build: .
-    command: celery -A django_celery_rabbitmq worker -B -l info
+    command: celery -A core worker -B -l info
     volumes:
       - .:/code
     depends_on:
@@ -59,7 +59,7 @@ services:
   flower:
     container_name: flower
     build: .
-    command: celery -A django_celery_rabbitmq flower --port=5555
+    command: celery -A core flower --port=5555
     volumes:
       - .:/code
     ports:

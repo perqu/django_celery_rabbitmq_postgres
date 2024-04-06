@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from django_celery_rabbitmq.views import health_check, view1, view2, index
+from core.views import health_check, view1, view2, index
 
 urlpatterns = [
     path('admin/', admin.site.urls),

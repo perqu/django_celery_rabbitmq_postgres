@@ -1,8 +1,8 @@
 import os
 from celery import Celery
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_celery_rabbitmq.settings')
-app = Celery('django_celery_rabbitmq', broker="pyamqp://rabbitmq:5672")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+app = Celery('core', broker="pyamqp://rabbitmq:5672")
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
